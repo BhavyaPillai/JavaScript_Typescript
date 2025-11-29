@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" id="form">
+        Name: 
+        <input type="text" name="" id="name">
+        Email: 
+        <input type="text" name="" id="email">
+        Password: 
+        <input type="password" name="" id="password">
+
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        const form = document.getElementById("form");
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const message = document.getElementById("message");
+
+        function nameChecker(name) {
+            const nameReg = /^[A-Za-z\s]+$/;
+            if(name.length == 0){
+                alert("Name is Empty");
+                return false;
+            }
+            else if(nameReg.test(name)){
+                return true;
+            }
+            else{
+                alert("Name is Invalid");
+                return false;
+            }
+        }
+
+        function emailChecker(email){
+            const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(email.length == 0){
+                alert("Email is Empty");
+                return false;
+            }
+            else if(emailReg.test(email)){
+                return true;
+            }
+            else{
+                alert("Email is Invalid");
+                return false;
+            }
+        }
+
+        function passwordChecker(password){
+            if(password.length < 8){
+                alert("Password should be atleast 8 letters long.");
+                return false;
+            }
+            else{
+                return true;
+            }   
+        }
+
+        function storeData(name, email, password){
+            const data = {
+                name: name,
+                email: email,
+                password: password
+            };
+            localStorage.setItem("LoginData", JSON.stringify(data));
+        }
+
+        form.onsubmit = (e) =>{
+            e.preventDefault();
+            const n1 = nameChecker(name.value.trim());
+            const e1 = emailChecker(email.value.trim());
+            const p1 = passwordChecker(password.value.trim());
+            if(n1 && e1 && p1){
+                storeData(name.value.trim(), email.value.trim(), password.value.trim());
+                alert("Form submitted successfully!");
+            }
+        }
+    </script>
+</body>
+</html>

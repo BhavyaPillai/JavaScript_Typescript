@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <ul id="Par">
+        <li>Prescription 1</li>
+    </ul>
+
+    <form method="post" id="form">
+        <button id="sub" type="submit">Add</button>
+    </form> -->
+    <button id="AddPat">Add Patients</button>
+    <button id="patCount">calculateTotalPatients</button>
+    <h3 id="count"></h3>
+    <script>
+        
+        const addPat= document.getElementById("AddPat");
+        const count= document.getElementById("patCount");
+        const cPlace = document.getElementById("count");
+
+        addPat.onclick = () => {
+            let currC =  localStorage.getItem("PatCount");
+            if(currC === null){
+                currC = 0;
+            }
+            currC = parseInt(currC) + 1;
+            localStorage.setItem("PatCount", currC);
+        }
+
+        count.onclick = () => {
+            const curr = localStorage.getItem("PatCount");
+            if(currC === null){
+                currC = 0;
+            }
+            cPlace.innerHTML = "Count :"+curr;
+        }
+
+    </script>
+</body>
+</html>

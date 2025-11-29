@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" id="form">
+        Name: 
+        <input type="text" name="" id="name">
+        Password: 
+        <input type="password" name="" id="password">
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        const form = document.getElementById("form");
+        const name = document.getElementById("name");
+        const password = document.getElementById("password");
+
+        function nameVerify(name, lname){
+            return name === lname;
+        }
+
+        function passwordVerify(password, lpassword){
+            return password === lpassword;
+        }
+
+        form.onsubmit = (e) =>{
+            e.preventDefault();
+            let data = localStorage.getItem("LoginData");
+            if (data) {
+                data = JSON.parse(data);
+                const e1 = nameVerify(name.value.trim(), data.name);
+                const p1 = passwordVerify(password.value.trim(), data.password);
+                if(p1){
+                    alert("Password is correct");
+                }
+                else{
+                    alert("Password is wrong");
+                }
+            } else {
+                alert("No login data found.");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="Par">
+        <li>Prescription 1</li>
+    </ul>
+
+    <form method="post" id="form">
+        <input type="text" name="" id="pres">
+        <button id="sub" type="submit">Add</button>
+    </form>
+    <script>
+        const par = document.getElementById("Par");
+        OldData = localStorage.getItem("Pres") || "";
+        par.innerHTML = OldData;
+        
+        const btn = document.getElementById("sub");
+        const form = document.getElementById("form");
+        const pres = document.getElementById("pres");
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            if (pres.value.trim() !== "") {
+                const newItem = document.createElement("li");
+                newItem.textContent = pres.value;
+                par.appendChild(newItem);
+                localStorage.setItem("Pres", par.innerHTML);
+                pres.value = "";
+            }
+        };
+
+
+    </script>
+</body>
+</html>
